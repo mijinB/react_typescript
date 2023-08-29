@@ -3,6 +3,7 @@ import { styled } from "styled-components";
 //지금은 CircleProps와 동일하지만 대부분은 다를 것이다.
 interface ContainerProps {
     bgColor: string;
+    borderColor: string;
 }
 
 const Container = styled.div<ContainerProps>`
@@ -10,14 +11,16 @@ const Container = styled.div<ContainerProps>`
     height: 200px;
     background-color: ${(props) => props.bgColor};
     border-radius: 100px;
+    border: 1px solid ${(props) => props.borderColor};
 `;
 
 interface CircleProps {
     bgColor: string;
+    borderColor?: string;
 }
 
-function Circle({ bgColor }: CircleProps) {
-    return <Container bgColor={bgColor} />;
+function Circle({ bgColor, borderColor }: CircleProps) {
+    return <Container bgColor={bgColor} borderColor={borderColor ?? bgColor} />;
 }
 
 export default Circle;
