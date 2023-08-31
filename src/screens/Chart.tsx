@@ -47,11 +47,11 @@ function Chart() {
                             curve: "smooth",
                             width: 5,
                         },
-                        colors: ["#0fbcf9"],
+                        colors: ["#FD7272"],
                         fill: {
                             type: "gradient",
                             gradient: {
-                                gradientToColors: ["#0be881"],
+                                gradientToColors: ["#F8EFBA"],
                                 stops: [0, 100],
                             },
                         },
