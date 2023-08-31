@@ -137,7 +137,9 @@ function Coin() {
     const { state } = useLocation() as RouteState;
     const priceMatch = useMatch("/:coinId/price");
     const chartMatch = useMatch("/:coinId/chart");
-    const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(["info", coinId], () => fetchCoinInfo(coinId));
+    const { isLoading: infoLoading, data: infoData } = useQuery<InfoData>(["info", coinId], () =>
+        fetchCoinInfo(coinId)
+    );
     const { isLoading: tickersLoading, data: tickersData } = useQuery<TickersData>(["tickers", coinId], () =>
         fetchCoinTickers(coinId)
     );
@@ -185,7 +187,7 @@ function Coin() {
                             <Link to={`/${coinId}/chart`}>Chart</Link>
                         </Tab>
                     </Tabs>
-                    <Outlet />
+                    <Outlet context={{ coinId }} />
                 </>
             )}
         </Container>
