@@ -47,12 +47,23 @@ function Chart() {
                             curve: "smooth",
                             width: 5,
                         },
+                        colors: ["#0fbcf9"],
+                        fill: {
+                            type: "gradient",
+                            gradient: {
+                                gradientToColors: ["#0be881"],
+                                stops: [0, 100],
+                            },
+                        },
+                        tooltip: {
+                            y: {
+                                formatter: (value) => `$ ${value.toFixed(2)}`,
+                            },
+                        },
                         grid: { show: false },
                         xaxis: {
-                            categories: data?.map((data) => {
-                                const time = new Date(data.time_close * 1000);
-                                return time.toLocaleDateString();
-                            }),
+                            type: "datetime",
+                            categories: data?.map((date) => new Date(date.time_close * 1000).toISOString()),
                             labels: { show: false },
                             axisTicks: { show: false },
                             axisBorder: { show: false },
