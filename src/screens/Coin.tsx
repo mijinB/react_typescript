@@ -56,7 +56,7 @@ const Tabs = styled.div`
     gap: 10px;
 `;
 
-const Tab = styled.span<{ isActive: boolean }>`
+const Tab = styled.span<{ $isActive: boolean }>`
     padding: 7px 0;
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -64,7 +64,7 @@ const Tab = styled.span<{ isActive: boolean }>`
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 400;
-    color: ${(props) => (props.isActive ? props.theme.accentColor : props.theme.textColor)};
+    color: ${(props) => (props.$isActive ? props.theme.accentColor : props.theme.textColor)};
     a {
         display: block;
     }
@@ -178,10 +178,10 @@ function Coin() {
                         </OverviewItem>
                     </Overview>
                     <Tabs>
-                        <Tab isActive={priceMatch !== null}>
+                        <Tab $isActive={priceMatch !== null}>
                             <Link to={`/${coinId}/price`}>Price</Link>
                         </Tab>
-                        <Tab isActive={chartMatch !== null}>
+                        <Tab $isActive={chartMatch !== null}>
                             <Link to={`/${coinId}/chart`}>Chart</Link>
                         </Tab>
                     </Tabs>
