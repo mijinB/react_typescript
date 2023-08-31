@@ -28,19 +28,19 @@ const Loader = styled.span`
 const Overview = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.5);
     padding: 10px 20px;
     border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
 `;
 const OverviewItem = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     span:first-child {
+        margin-bottom: 5px;
         font-size: 10px;
         font-weight: 400;
         text-transform: uppercase;
-        margin-bottom: 5px;
     }
 `;
 const Description = styled.p`
