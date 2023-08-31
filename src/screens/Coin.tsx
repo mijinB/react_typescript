@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Outlet, useLocation, useParams } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -45,6 +45,26 @@ const OverviewItem = styled.div`
 `;
 const Description = styled.p`
     margin: 20px 0px;
+`;
+
+const Tabs = styled.div`
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 25px 0;
+    gap: 10px;
+`;
+
+const Tab = styled.span`
+    padding: 7px 0;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 400;
+    a {
+        display: block;
+    }
 `;
 
 interface RouteState {
@@ -160,6 +180,14 @@ function Coin() {
                             <span>{priceInfo?.max_supply}</span>
                         </OverviewItem>
                     </Overview>
+                    <Tabs>
+                        <Tab>
+                            <Link to={`/${coinId}/price`}>Price</Link>
+                        </Tab>
+                        <Tab>
+                            <Link to={`/${coinId}/chart`}>Chart</Link>
+                        </Tab>
+                    </Tabs>
                     <Outlet />
                 </>
             )}
