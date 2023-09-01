@@ -12,6 +12,7 @@ const Loader = styled.span`
 `;
 
 interface ChartProps {
+    themeMode: string;
     coinId: string;
 }
 
@@ -27,7 +28,7 @@ interface IHistorical {
 }
 
 function Chart() {
-    const { coinId } = useOutletContext<ChartProps>();
+    const { themeMode, coinId } = useOutletContext<ChartProps>();
     const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () => fetchCoinHistory(coinId));
 
     return (
@@ -36,42 +37,39 @@ function Chart() {
                 <Loader>Loading chart...</Loader>
             ) : (
                 <ApexCharts
-                    type="line"
+                    type="candlestick"
                     series={[
                         {
-                            name: "Price",
-                            data: data?.map((price) => parseFloat(price.close)) as number[],
+                            data:
+                                data?.map((price) => {
+                                    return {
+                                        x: new Date(price.time_close * 1000).toISOString(),
+                                        y: [
+                                            parseFloat(price.open),
+                                            parseFloat(price.high),
+                                            parseFloat(price.low),
+                                            parseFloat(price.close),
+                                        ],
+                                    };
+                                }) ?? [],
                         },
                     ]}
                     options={{
-                        theme: { mode: "dark" },
+                        theme: { mode: themeMode === "lightTheme" ? "light" : "dark" },
                         chart: {
                             background: "transparent",
-                            toolbar: {
-                                show: false,
-                            },
+                            toolbar: { show: false },
                         },
-                        stroke: {
-                            curve: "smooth",
-                            width: 5,
-                        },
-                        colors: ["#FD7272"],
-                        fill: {
-                            type: "gradient",
-                            gradient: {
-                                gradientToColors: ["#F8EFBA"],
-                                stops: [0, 100],
-                            },
-                        },
-                        tooltip: {
-                            y: {
-                                formatter: (value) => `$ ${value.toFixed(2)}`,
+                        plotOptions: {
+                            candlestick: {
+                                colors: {
+                                    upward: themeMode === "lightTheme" ? "#22a6b3" : "#7ed6df",
+                                    downward: themeMode === "lightTheme" ? "#eb4d4b" : "#ff7979",
+                                },
                             },
                         },
                         grid: { show: false },
                         xaxis: {
-                            type: "datetime",
-                            categories: data?.map((date) => new Date(date.time_close * 1000).toISOString()),
                             labels: { show: false },
                             axisTicks: { show: false },
                             axisBorder: { show: false },

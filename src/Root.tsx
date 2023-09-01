@@ -101,7 +101,7 @@ function Root() {
             <ThemeProvider theme={theme}>
                 <ThemeModeButton clickEvent={clickEvent} />
                 <GlobalStyle />
-                <Outlet />
+                <Outlet context={{themeMode}} />
                 <ReactQueryDevtools initialIsOpen={true} />
             </ThemeProvider>
         </>
