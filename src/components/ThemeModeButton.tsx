@@ -11,7 +11,7 @@ const ThemeModeToggle = styled.input.attrs({ id: "toggle", type: "checkbox" })`
     left: -10000px;
 `;
 
-const ThemeModeLabel = styled.label`
+const ThemeModeLabel = styled.label.attrs({ htmlFor: "toggle" })`
     display: block;
     position: relative;
     width: 62px;
@@ -32,16 +32,15 @@ const ThemeModeLabel = styled.label`
     }
 `;
 
-interface IThemeMode {
-    themeMode: string;
+interface IClickEvent {
     clickEvent: React.MouseEventHandler<HTMLInputElement>;
 }
 
-function ThemeModeButton({ themeMode, clickEvent }: IThemeMode) {
+function ThemeModeButton({ clickEvent }: IClickEvent) {
     return (
         <ThemeModeWrapper>
             <ThemeModeToggle onClick={clickEvent} />
-            <ThemeModeLabel htmlFor="toggle" />
+            <ThemeModeLabel />
         </ThemeModeWrapper>
     );
 }

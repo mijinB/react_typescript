@@ -99,7 +99,7 @@ function Root() {
     return (
         <>
             <ThemeProvider theme={theme}>
-                <ThemeModeButton themeMode={themeMode} clickEvent={clickEvent} />
+                <ThemeModeButton clickEvent={clickEvent} />
                 <GlobalStyle />
                 <Outlet />
                 <ReactQueryDevtools initialIsOpen={true} />
