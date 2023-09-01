@@ -38,6 +38,7 @@ const Overview = styled.div`
     border-radius: 10px;
     background-color: ${(props) => props.theme.primaryColor};
 `;
+
 const OverviewItem = styled.div`
     display: flex;
     flex-direction: column;
@@ -47,10 +48,11 @@ const OverviewItem = styled.div`
     span:first-child {
         margin-bottom: 5px;
         font-size: 10px;
-        font-weight: 400;
+        font-weight: 600;
         text-transform: uppercase;
     }
 `;
+
 const Description = styled.p`
     margin: 20px 0px;
 `;
@@ -164,6 +166,7 @@ function Coin() {
         fetchCoinTickers(coinId)
     );
     const loading = infoLoading || tickersLoading;
+    const priceData = tickersData?.quotes.USD;
 
     return (
         <Container>
@@ -190,8 +193,8 @@ function Coin() {
                             <span>{infoData?.symbol}</span>
                         </OverviewItem>
                         <OverviewItem>
-                            <span>Price:</span>
-                            <span>{tickersData?.quotes.USD.price.toFixed(3)}</span>
+                            <span>started at:</span>
+                            <span>{new Date(`${infoData?.started_at}`).toLocaleDateString()}</span>
                         </OverviewItem>
                     </Overview>
                     <Description>{infoData?.description}</Description>
@@ -213,7 +216,7 @@ function Coin() {
                             <Link to={`/${coinId}/chart`}>Chart</Link>
                         </Tab>
                     </Tabs>
-                    <Outlet context={{ coinId }} />
+                    <Outlet context={{ coinId, priceData }} />
                 </>
             )}
         </Container>
