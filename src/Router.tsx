@@ -32,5 +32,5 @@ const router = createBrowserRouter([
         ],
         errorElement: <NotFound />,
     },
-]);
+], {basename: "/react_typescript"});
 export default router;
