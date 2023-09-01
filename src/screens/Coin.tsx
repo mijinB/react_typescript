@@ -87,7 +87,7 @@ const Tab = styled.span<{ $isActive: boolean }>`
 `;
 
 const HomeButton = styled.div`
-    font-size: 30px;
+    font-size: 32px;
 `;
 
 interface RouteState {
@@ -175,7 +175,7 @@ function Coin() {
                 <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
             </Helmet>
             <HomeButton>
-                <Link to={`/`}>🏠</Link>
+                <Link to={`/`}>👈</Link>
             </HomeButton>
             <Header>
                 <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
