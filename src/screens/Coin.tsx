@@ -43,7 +43,7 @@ const OverviewItem = styled.div`
     flex-direction: column;
     align-items: center;
     width: 33%;
-    color: ${props => props.theme.bgColor};
+    color: ${(props) => props.theme.bgColor};
     span:first-child {
         margin-bottom: 5px;
         font-size: 10px;
@@ -170,6 +170,7 @@ function Coin() {
             <Helmet>
                 <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
             </Helmet>
+            <Link to={`/`}>홈으로!!</Link>
             <Header>
                 <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
             </Header>
