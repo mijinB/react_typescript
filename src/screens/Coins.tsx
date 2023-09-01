@@ -22,7 +22,7 @@ const CoinsList = styled.ul``;
 const Coin = styled.li`
     margin-bottom: 10px;
     border-radius: 15px;
-    background-color: ${(props) => props.theme.accentColor};
+    background-color: ${(props) => props.theme.primaryColor};
     color: ${(props) => props.theme.textColor};
     a {
         display: flex;
@@ -39,7 +39,7 @@ const Coin = styled.li`
 
 const Title = styled.h1`
     font-size: 48px;
-    color: ${(props) => props.theme.accentColor};
+    color: ${(props) => props.theme.primaryColor};
 `;
 
 const Loader = styled.span`

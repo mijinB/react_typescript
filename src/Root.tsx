@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { darkTheme, lightTheme } from "./theme";
+import ThemeModeButton from "./components/ThemeModeButton";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -65,11 +68,42 @@ a {
 `;
 
 function Root() {
+    const THEMEMODE_KEY = "toggletheme";
+
+    const savedThemeMode = localStorage.getItem(THEMEMODE_KEY);
+    const [themeMode, setThemeMode] = useState(savedThemeMode === "lightTheme" ? "darkTheme" : "lightTheme");
+    const theme = themeMode === "lightTheme" ? lightTheme : darkTheme;
+
+    /**@function saveToLocalStorage
+     * 1. localStorage에 themeMode data 저장
+     */
+    const saveToLocalStorage = () => {
+        localStorage.setItem(THEMEMODE_KEY, themeMode);
+    };
+
+    /**@function clickEvent
+     * 1. themeMode가 lightTheme인지 확인 후
+     * 2. lightTheme이면, "darkTheme"을 themeMode 변수에 저장하고 saveToLocalStorage 함수 실행
+     * 3. lightTheme아니면, "lightTheme"을 themeMode 변수에 저장하고 saveToLocalStorage 함수 실행
+     */
+    const clickEvent = () => {
+        if (themeMode === "lightTheme") {
+            setThemeMode("darkTheme");
+            saveToLocalStorage();
+        } else {
+            setThemeMode("lightTheme");
+            saveToLocalStorage();
+        }
+    };
+
     return (
         <>
-            <GlobalStyle />
-            <Outlet />
-            <ReactQueryDevtools initialIsOpen={true} />
+            <ThemeProvider theme={theme}>
+                <ThemeModeButton themeMode={themeMode} clickEvent={clickEvent} />
+                <GlobalStyle />
+                <Outlet />
+                <ReactQueryDevtools initialIsOpen={true} />
+            </ThemeProvider>
         </>
     );
 }

@@ -19,7 +19,7 @@ const Header = styled.header`
 
 const Title = styled.h1`
     font-size: 48px;
-    color: ${(props) => props.theme.accentColor};
+    color: ${(props) => props.theme.primaryColor};
 `;
 
 const Loader = styled.span`
@@ -32,7 +32,7 @@ const Overview = styled.div`
     justify-content: space-between;
     padding: 10px 20px;
     border-radius: 10px;
-    background-color: ${(props) => props.theme.accentColor};
+    background-color: ${(props) => props.theme.primaryColor};
 `;
 const OverviewItem = styled.div`
     display: flex;
@@ -59,7 +59,7 @@ const Tabs = styled.div`
 
 const Tab = styled.span<{ $isActive: boolean }>`
     border-radius: 10px;
-    background-color: ${(props) => props.theme.accentColor};
+    background-color: ${(props) => props.theme.primaryColor};
     text-align: center;
     text-transform: uppercase;
     font-size: 12px;
