@@ -86,6 +86,10 @@ const Tab = styled.span<{ $isActive: boolean }>`
     }
 `;
 
+const HomeButton = styled.div`
+    font-size: 30px;
+`;
+
 interface RouteState {
     state: {
         name: string;
@@ -170,7 +174,9 @@ function Coin() {
             <Helmet>
                 <title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</title>
             </Helmet>
-            <Link to={`/`}>홈으로!!</Link>
+            <HomeButton>
+                <Link to={`/`}>🏠</Link>
+            </HomeButton>
             <Header>
                 <Title>{state?.name ? state.name : loading ? "Loading..." : infoData?.name}</Title>
             </Header>
