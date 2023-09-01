@@ -8,12 +8,12 @@ const ThemeModeWrapper = styled.button`
     background-color: red;
 `;
 
-interface ITheneMode {
+interface IThemeMode {
     themeMode: string;
     clickEvent: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-function ThemeModeButton({ themeMode, clickEvent }: ITheneMode) {
+function ThemeModeButton({ themeMode, clickEvent }: IThemeMode) {
     return (
         <ThemeModeWrapper onClick={clickEvent}>
             {`${themeMode}` === "lightTheme" ? "light" : "dark"}
