@@ -13,8 +13,9 @@ const Container = styled.div`
 const Header = styled.header`
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 10vh;
+    margin: 46px 0 23px;
+    align-items: center;
 `;
 
 const CoinsList = styled.ul``;
@@ -22,28 +23,33 @@ const CoinsList = styled.ul``;
 const Coin = styled.li`
     margin-bottom: 10px;
     border-radius: 15px;
-    background-color: ${(props) => props.theme.primaryColor};
+    background-color: ${(props) => props.theme.boxColor};
     color: ${(props) => props.theme.textColor};
     a {
         display: flex;
         align-items: center;
         padding: 20px;
-        transition: color 0.2s ease-in;
+        border-radius: 15px;
+        transition: all 0.25s ease-in;
     }
     &:hover {
         a {
+            background-color: ${(props) => props.theme.primaryColor};
             color: ${(props) => props.theme.bgColor};
         }
     }
 `;
 
 const Title = styled.h1`
-    font-size: 48px;
     color: ${(props) => props.theme.primaryColor};
+    font-size: 48px;
+    font-weight: 600;
 `;
 
 const Loader = styled.span`
     display: block;
+    color: ${props => props.theme.textColor};
+    font-weight: 600;
     text-align: center;
 `;
 
@@ -69,10 +75,10 @@ function Coins() {
     return (
         <Container>
             <Helmet>
-                <title>코인</title>
+                <title>Coins</title>
             </Helmet>
             <Header>
-                <Title>코인</Title>
+                <Title>Coins</Title>
             </Header>
             {isLoading ? (
                 <Loader>Loading...</Loader>

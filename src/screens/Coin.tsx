@@ -13,17 +13,21 @@ const Container = styled.div`
 const Header = styled.header`
     display: flex;
     justify-content: center;
-    align-items: center;
     height: 10vh;
+    margin: 46px 0 23px;
+    align-items: center;
 `;
 
 const Title = styled.h1`
-    font-size: 48px;
     color: ${(props) => props.theme.primaryColor};
+    font-size: 48px;
+    font-weight: 600;
 `;
 
 const Loader = styled.span`
     display: block;
+    color: ${(props) => props.theme.textColor};
+    font-weight: 600;
     text-align: center;
 `;
 
@@ -39,6 +43,7 @@ const OverviewItem = styled.div`
     flex-direction: column;
     align-items: center;
     width: 33%;
+    color: ${props => props.theme.bgColor};
     span:first-child {
         margin-bottom: 5px;
         font-size: 10px;
@@ -59,16 +64,25 @@ const Tabs = styled.div`
 
 const Tab = styled.span<{ $isActive: boolean }>`
     border-radius: 10px;
-    background-color: ${(props) => props.theme.primaryColor};
+    background-color: ${(props) => props.theme.boxColor};
     text-align: center;
     text-transform: uppercase;
     font-size: 12px;
     font-weight: 400;
-    color: ${(props) => (props.$isActive ? props.theme.bgColor : props.theme.textColor)};
+    color: ${(props) => (props.$isActive ? props.theme.primaryColor : props.theme.textColor)};
+    box-shadow: 0px 0px 0px 1px ${(props) => props.theme.textColor};
     a {
         display: block;
         padding: 7px 0;
+        border-radius: 10px;
         font-weight: 600;
+        transition: all 0.25s ease-in;
+    }
+    &:hover {
+        a {
+            background-color: ${(props) => props.theme.primaryColor};
+            color: ${(props) => props.theme.bgColor};
+        }
     }
 `;
 

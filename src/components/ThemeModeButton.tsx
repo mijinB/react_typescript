@@ -14,20 +14,21 @@ const ThemeModeToggle = styled.input.attrs({ id: "toggle", type: "checkbox" })`
 const ThemeModeLabel = styled.label`
     display: block;
     position: relative;
-    width: 60px;
+    width: 62px;
     height: 33px;
     border-radius: 24px;
-    background-color: ${props => props.theme.textColor};
-    transition: all ease-out 0.5s;
+    background-color: ${(props) => props.theme.boxColor};
+    box-shadow: 0px 0px 0px 1px ${(props) => props.theme.textColor};
+    transition: all 0.25s ease-in;
     cursor: pointer;
     &::after {
         position: absolute;
         top: 3px;
-        left: ${props => props.theme.contentLeft};
-        color: ${props => props.theme.primaryColor};
+        left: ${(props) => props.theme.contentLeft};
+        color: ${(props) => props.theme.primaryColor};
         font-size: 23px;
-        transition: all ease-out 0.5s;
-        content: "${props => props.theme.contentText}";
+        transition: all 0.5s ease-out;
+        content: "${(props) => props.theme.contentText}";
     }
 `;
 
