@@ -95,9 +95,6 @@ const HomeButton = styled.div`
 /* interface CoinProps {
     themeMode: string;
 } */
-interface CoinProps {
-    isDark: boolean;
-}
 
 interface RouteState {
     state: {
@@ -163,7 +160,6 @@ interface TickersData {
 
 function Coin() {
     // const { themeMode } = useOutletContext<CoinProps>();
-    const { isDark } = useOutletContext<CoinProps>();
     const { coinId } = useParams();
     const { state } = useLocation() as RouteState;
     const priceMatch = useMatch("/:coinId/price");
@@ -226,7 +222,7 @@ function Coin() {
                         </Tab>
                     </Tabs>
                     {/* <Outlet context={{ themeMode, coinId, priceData }} /> */}
-                    <Outlet context={{ isDark, coinId, priceData }} />
+                    <Outlet context={{ coinId, priceData }} />
                 </>
             )}
         </Container>

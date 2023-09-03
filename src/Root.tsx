@@ -96,18 +96,13 @@ function Root() {
         }
     }; */
 
-    //study
-    const [isDark, setIsDark] = useState(false);
-
-    const toggleDark = () => setIsDark((current) => !current);
-
     return (
         <>
-            <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+            <ThemeProvider theme={false ? darkTheme : lightTheme}>
                 {/* <ThemeModeButton clickEvent={clickEvent} /> */}
                 <GlobalStyle />
                 {/* <Outlet context={{themeMode}} /> */}
-                <Outlet context={{ toggleDark, isDark }} />
+                <Outlet />
                 <ReactQueryDevtools initialIsOpen={true} />
             </ThemeProvider>
         </>

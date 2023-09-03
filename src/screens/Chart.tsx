@@ -16,7 +16,6 @@ const Loader = styled.span`
     coinId: string;
 } */
 interface ChartProps {
-    isDark: boolean;
     coinId: string;
 }
 
@@ -33,7 +32,7 @@ interface IHistorical {
 
 function Chart() {
     // const { themeMode, coinId } = useOutletContext<ChartProps>();
-    const { isDark, coinId } = useOutletContext<ChartProps>();
+    const { coinId } = useOutletContext<ChartProps>();
     const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () => fetchCoinHistory(coinId));
 
     return (
@@ -61,7 +60,7 @@ function Chart() {
                     ]}
                     options={{
                         // theme: { mode: themeMode === "lightTheme" ? "light" : "dark" },
-                        theme: { mode: !isDark ? "light" : "dark" },
+                        theme: { mode: "light" },
                         chart: {
                             background: "transparent",
                             toolbar: { show: false },
@@ -73,8 +72,8 @@ function Chart() {
                                     downward: themeMode === "lightTheme" ? "#eb4d4b" : "#ff7979",
                                 }, */
                                 colors: {
-                                    upward: !isDark ? "#22a6b3" : "#7ed6df",
-                                    downward: !isDark ? "#eb4d4b" : "#ff7979",
+                                    upward: "#22a6b3",
+                                    downward: "#eb4d4b",
                                 },
                             },
                         },
