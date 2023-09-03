@@ -13,10 +13,6 @@ const Loader = styled.span`
     text-align: center;
 `;
 
-/* interface ChartProps {
-    themeMode: string;
-    coinId: string;
-} */
 interface ChartProps {
     coinId: string;
 }
@@ -33,7 +29,6 @@ interface IHistorical {
 }
 
 function Chart() {
-    // const { themeMode, coinId } = useOutletContext<ChartProps>();
     const isDark = useRecoilValue(isDarkAtom);
     const { coinId } = useOutletContext<ChartProps>();
     const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () => fetchCoinHistory(coinId));
@@ -62,7 +57,6 @@ function Chart() {
                         },
                     ]}
                     options={{
-                        // theme: { mode: themeMode === "lightTheme" ? "light" : "dark" },
                         theme: { mode: !isDark ? "light" : "dark" },
                         chart: {
                             background: "transparent",
@@ -70,10 +64,6 @@ function Chart() {
                         },
                         plotOptions: {
                             candlestick: {
-                                /* colors: {
-                                    upward: themeMode === "lightTheme" ? "#22a6b3" : "#7ed6df",
-                                    downward: themeMode === "lightTheme" ? "#eb4d4b" : "#ff7979",
-                                }, */
                                 colors: {
                                     upward: !isDark ? "#22a6b3" : "#7ed6df",
                                     downward: !isDark ? "#eb4d4b" : "#ff7979",
