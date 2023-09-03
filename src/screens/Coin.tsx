@@ -1,6 +1,6 @@
 import { useQuery } from "react-query";
 import { Helmet } from "react-helmet";
-import { Link, Outlet, useLocation, useParams, useMatch } from "react-router-dom";
+import { Link, Outlet, useLocation, useParams, useMatch, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
 
@@ -92,8 +92,11 @@ const HomeButton = styled.div`
     font-size: 32px;
 `;
 
-interface CoinProps {
+/* interface CoinProps {
     themeMode: string;
+} */
+interface CoinProps {
+    isDark: boolean;
 }
 
 interface RouteState {
@@ -160,6 +163,7 @@ interface TickersData {
 
 function Coin() {
     // const { themeMode } = useOutletContext<CoinProps>();
+    const { isDark } = useOutletContext<CoinProps>();
     const { coinId } = useParams();
     const { state } = useLocation() as RouteState;
     const priceMatch = useMatch("/:coinId/price");
@@ -222,7 +226,7 @@ function Coin() {
                         </Tab>
                     </Tabs>
                     {/* <Outlet context={{ themeMode, coinId, priceData }} /> */}
-                    <Outlet context={{ coinId, priceData }} />
+                    <Outlet context={{ isDark, coinId, priceData }} />
                 </>
             )}
         </Container>
