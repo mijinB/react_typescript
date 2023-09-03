@@ -3,6 +3,8 @@ import { useOutletContext } from "react-router-dom";
 import { fetchCoinHistory } from "../api";
 import ApexCharts from "react-apexcharts";
 import { styled } from "styled-components";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "../atoms";
 
 const Loader = styled.span`
     display: block;
@@ -32,6 +34,7 @@ interface IHistorical {
 
 function Chart() {
     // const { themeMode, coinId } = useOutletContext<ChartProps>();
+    const isDark = useRecoilValue(isDarkAtom);
     const { coinId } = useOutletContext<ChartProps>();
     const { isLoading, data } = useQuery<IHistorical[]>(["ohlcv", coinId], () => fetchCoinHistory(coinId));
 
@@ -60,7 +63,7 @@ function Chart() {
                     ]}
                     options={{
                         // theme: { mode: themeMode === "lightTheme" ? "light" : "dark" },
-                        theme: { mode: "light" },
+                        theme: { mode: !isDark ? "light" : "dark" },
                         chart: {
                             background: "transparent",
                             toolbar: { show: false },
@@ -72,8 +75,8 @@ function Chart() {
                                     downward: themeMode === "lightTheme" ? "#eb4d4b" : "#ff7979",
                                 }, */
                                 colors: {
-                                    upward: "#22a6b3",
-                                    downward: "#eb4d4b",
+                                    upward: !isDark ? "#22a6b3" : "#7ed6df",
+                                    downward: !isDark ? "#eb4d4b" : "#ff7979",
                                 },
                             },
                         },

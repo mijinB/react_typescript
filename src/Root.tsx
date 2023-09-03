@@ -1,9 +1,10 @@
-import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { darkTheme, lightTheme } from "./theme";
 // import ThemeModeButton from "./components/ThemeModeButton";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
@@ -95,10 +96,11 @@ function Root() {
             saveToLocalStorage();
         }
     }; */
+    const isDark = useRecoilValue(isDarkAtom);
 
     return (
         <>
-            <ThemeProvider theme={false ? darkTheme : lightTheme}>
+            <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
                 {/* <ThemeModeButton clickEvent={clickEvent} /> */}
                 <GlobalStyle />
                 {/* <Outlet context={{themeMode}} /> */}
