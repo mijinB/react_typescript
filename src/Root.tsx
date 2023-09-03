@@ -2,8 +2,8 @@ import { Outlet } from "react-router-dom";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { darkTheme, lightTheme } from "./theme";
-// import ThemeModeButton from "./components/ThemeModeButton";
-import { useRecoilValue } from "recoil";
+import ThemeModeButton from "./components/ThemeModeButton";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import { isDarkAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
@@ -70,11 +70,21 @@ a {
 
 function Root() {
     const isDark = useRecoilValue(isDarkAtom);
+    const setDarkAtom = useSetRecoilState(isDarkAtom);
+
+    /**@function toggleDarkAtom
+     * 1. useSetRecoilState 함수를 이용해서 isDarkAtom 값 변경
+     * 2. localStorage에 isDark 값 저장
+     */
+    const toggleDarkAtom = () => {
+      setDarkAtom((prev) => !prev);
+      localStorage.setItem("isdarkmode", `${!isDark}`);
+  };
 
     return (
         <>
             <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-                {/* <ThemeModeButton clickEvent={clickEvent} /> */}
+                <ThemeModeButton clickEvent={toggleDarkAtom} />
                 <GlobalStyle />
                 <Outlet />
                 <ReactQueryDevtools initialIsOpen={true} />
