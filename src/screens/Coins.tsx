@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import styled from "styled-components";
 import { fetchCoins } from "../api";
 import { Helmet } from "react-helmet";
@@ -48,7 +48,7 @@ const Title = styled.h1`
 
 const Loader = styled.span`
     display: block;
-    color: ${props => props.theme.textColor};
+    color: ${(props) => props.theme.textColor};
     font-weight: 600;
     text-align: center;
 `;
@@ -69,8 +69,14 @@ interface ICoin {
     type: string;
 }
 
+interface ICoinsProps {
+    toggleDark: () => void;
+}
+
 function Coins() {
     const { isLoading, data } = useQuery<ICoin[]>("allCoins", fetchCoins);
+    const { toggleDark } = useOutletContext<ICoinsProps>();
+    console.log(toggleDark);
 
     return (
         <Container>
@@ -79,6 +85,7 @@ function Coins() {
             </Helmet>
             <Header>
                 <Title>Coins</Title>
+                <button onClick={toggleDark}>Toggle Dark Mode</button>
             </Header>
             {isLoading ? (
                 <Loader>Loading...</Loader>
